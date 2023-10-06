@@ -1,0 +1,73 @@
+.navbar {
+    background-color: white;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.125);
+    text-decoration: none;
+    list-style-type: none;
+    display: flex;
+    border-radius: 3px;
+    border-width: 2px;
+    border-color: brown;
+}
+
+.link {
+    /* box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2); */
+    color: black;
+    text-decoration: inherit;
+    margin: 5px;
+    padding: 0;
+    overflow: hidden;
+    float: right;
+}
+
+.link a {
+    /* box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2); */
+    color: black;
+    text-decoration: inherit;
+    margin: 5px;
+    float: right;
+}
+
+.link a:hover {
+    color: gray;
+    text-decoration: none;
+}
+
+.link-home a {
+    float: left;
+    
+}
+
+
+/* .nav-item {
+    width: 100px;
+    text-align: center;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+}
+
+nav a.active {
+    color: gray;
+    font-weight: bold;
+    border-bottom: 5px dotted;
+    box-sizing: border-box;
+}
+
+nav a.active:hover {
+    color: #f0f2f5 !important;
+}
+
+nav a:hover {
+    text-decoration: none;
+    color: #f0f2f5;
+}
+
+nav a.active.navbar-brand {
+    border-bottom: none;
+}
+
+nav a:not(.navbar-brand):hover {
+    font-weight: bold;
+} */

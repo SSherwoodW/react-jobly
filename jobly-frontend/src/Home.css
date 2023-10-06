@@ -1,0 +1,9 @@
+.header {
+    color: white;
+    text-shadow: 2px 2px 5px #34302f;
+}
+
+.button {
+    background-color: rgb(52, 163, 150);
+    text-decoration: none;
+}

@@ -1,0 +1,7 @@
+.company-list {
+    display: block;
+    box-sizing: border-box;
+    width: 75%;
+    text-align: left;
+    margin: auto;
+}

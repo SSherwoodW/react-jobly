@@ -1,0 +1,14 @@
+#company-name {
+    display: block;
+    text-align: left;
+    /* padding: 5px; */
+    margin-left: 6px;
+    color: rgb(210, 217, 224);
+}
+
+#company-desc {
+    display: block;
+    text-align: left;
+    color: rgb(210, 217, 224);
+    margin-left: 6px;
+}
