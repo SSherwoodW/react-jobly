@@ -1,5 +1,6 @@
 .job-card {
     display: block;
+    box-sizing: border-box;
     text-align: left;
     text-indent: 8%;
     background-color: rgb(229, 231, 232);
@@ -8,9 +9,10 @@
     border-radius: 5px;
     box-shadow: 0, 0, 1, 2;
     width: 75%;
+    color: black;
 }
 
 .apply-btn {
     background-color: darkgreen;
-    margin-left: 89%;
+    margin-left: 75%;
 }

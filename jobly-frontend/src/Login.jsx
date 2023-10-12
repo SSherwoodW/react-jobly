@@ -20,6 +20,8 @@ function Login({ logIn }) {
 
 
   return (
+    <>
+    <h3 className="header">Log In</h3>
     <form className="form-container" onSubmit={formik.handleSubmit}>
       <label htmlFor="username">Username</label>
       <input
@@ -38,7 +40,8 @@ function Login({ logIn }) {
         value={formik.values.password}
       />
       <button type="submit">Submit</button>
-    </form>
+      </form>
+      </>
   );
 };
 

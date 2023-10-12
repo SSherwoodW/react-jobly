@@ -19,6 +19,8 @@ function Signup({signUp}) {
     }
   });
   return (
+    <>
+    <h3 className="header">Sign Up</h3>
     <form className="form-container" onSubmit={formik.handleSubmit}>
       <label htmlFor="username">Username</label>
       <input
@@ -61,7 +63,8 @@ function Signup({signUp}) {
         value={formik.values.email}
       />
       <button type="submit">Submit</button>
-    </form>
+      </form>
+      </>
   );
 };
 

@@ -131,7 +131,7 @@ p>*:last-child {
 
 a {
     color: inherit;
-    text-decoration: underline;
+    text-decoration: none;
     text-decoration-color: var(--text-decoration-color);
     -webkit-text-decoration-color: var(--text-decoration-color);
     border-radius: 5px;
@@ -141,20 +141,20 @@ a {
 
 @media (hover: hover) {
     a:hover {
-        text-decoration-color: var(--gray-800);
+        color: lightgray;
     }
 }
 
 @media (hover: hover) and (prefers-color-scheme: dark) {
     a:hover {
-        text-decoration-color: white;
+        color: lightgray;
     }
 }
 
 @media (prefers-color-scheme: dark) {
     a {
-        text-decoration-color: var(--gray-700);
-        -webkit-text-decoration-color: var(--gray-700);
+        color: gray;
+        
     }
 }
 
@@ -183,6 +183,7 @@ hr {
     /* Center items horizontally */
     background-color:#718096;
     border-radius: 5px;
+    place-items: center !important;
 }
 
 
@@ -193,6 +194,7 @@ hr {
 label {
     font-weight: bold;
     display: flex;
+
 }
 
 input,

@@ -5,3 +5,12 @@
     text-align: left;
     margin: auto;
 }
+
+.search-btn {
+    margin-left: 4px;
+    background-color: #2a4365;
+}
+
+.search-btn:hover {
+    background-color: gray;
+}

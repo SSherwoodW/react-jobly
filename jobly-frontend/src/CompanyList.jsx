@@ -44,7 +44,7 @@ function CompanyList() {
                         value={searchTerm}
                         onChange={handleChange}
                     />
-                    <button type="submit">Search</button>
+                    <button className="search-btn" type="submit">Search</button>
                 </form>
             </div>
             <div className="company-list">

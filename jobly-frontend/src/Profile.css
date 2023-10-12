@@ -1,0 +1,12 @@
+header {
+    color: white;
+    text-shadow: 2px 2px 5px #34302f;
+}
+
+#username {
+    background-color: lightgray;
+}
+
+.form-container {
+    margin: 0 20%;
+}

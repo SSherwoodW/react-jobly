@@ -1,34 +1,41 @@
 import React, { useContext } from "react";
 import UserContext from "./userContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./NavBar.css";
 
 
-function NavBar({logOut}) {
+
+function NavBar({ logOut }) {
+  
   const user = useContext(UserContext)
-  console.log(user.username)
+  console.log(user)
 
-  function handleSubmit(evt) {
-    logOut();
-  }
 
-  if (!user) {
+  if (!user.currentUser) {
     return (
-      <ul className="navbar">
-        <li className="link link-home"><Link to="/">Jobly</Link></li>
-        <li className="link"><Link to="/signup" >Sign Up</Link></li>
-        <li className="link"><Link to="/login" >Log In</Link></li>
-      </ul>
+      <div className="Navigation navbar">
+      <div className="container-fluid">
+        <Link className="link-home" to="/">Jobly</Link>
+        <ul className="navbar navbar-links">
+          <li className="link"><Link to="/login">Log In</Link></li>
+          <li className="link"><Link to="/signup">Sign Up</Link></li>
+        </ul>
+      </div>
+      </div>
     );
   } 
-    return (
-      <ul className="navbar">
-        <li className="link link-home"><Link to="/">Jobly</Link></li>
+  return (
+    <div className="Navigation">
+      <div className="container-fluid">
+        <Link className="link-home" to="/">Jobly</Link>
+      <ul className="navbar navbar-links">
         <li className="link"><Link to="/companies" >Companies</Link></li>
         <li className="link"><Link to="/jobs" >Jobs</Link></li>
         <li className="link"><Link to="/profile" >Profile</Link></li>
-        <li className="link"><button type="submit" onSubmit={handleSubmit}>Log Out</button></li>
-      </ul>
+        <li className="link" onClick={() => logOut()}><Link to="/">Log Out</Link></li>
+        </ul>
+        </div>
+      </div>
     )
   
 }

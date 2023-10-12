@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import JoblyApi from "../../api";
 import JobCard from "./JobCard";
+import "./JobsList.css"
 
 
-function JobsList() {
+function JobsList({ applyToJob }) {
     const [jobs, setJobs] = useState([])
     const [searchTerm, setSearchTerm] = useState("")
+    const [appliedStatus, setAppliedStatus] = useState(false)
 
     useEffect(() => {
         async function getJobs() {
@@ -16,7 +18,7 @@ function JobsList() {
     }, [])
 
     let allJobs = jobs.map(job => (
-        <JobCard key={job.id} job={job} />
+        <JobCard key={job.id} job={job} applyToJob={applyToJob} />
     ))
 
     const handleChange = (evt) => {
@@ -43,7 +45,7 @@ function JobsList() {
                         value={searchTerm}
                         onChange={handleChange}
                     />
-                    <button type="submit">Search</button>
+                    <button className="search-btn" type="submit">Search</button>
                 </form>
             </div>
             <div className="jobs-list">

@@ -11,17 +11,19 @@ const BASE_URL = "http://localhost:3001";
  *
  */
 
+// localStorage.setItem("token", JoblyApi.token);
+
 class JoblyApi {
-    // the token for interactive with the API will be stored here.
+    // the token for interaction with the API will be stored here.
     static token;
 
-    static async request(endpoint, data = {}, method = "get") {
+    static async request(endpoint, data = {}, method = "get", token) {
         console.debug("API Call:", endpoint, data, method);
 
         //there are multiple ways to pass an authorization token, this is how you pass it in the header.
         //this has been provided to show you another way to pass the token. you are only expected to read this code for this project.
         const url = `${BASE_URL}/${endpoint}`;
-        const headers = { Authorization: `Bearer ${JoblyApi.token}` };
+        const headers = { Authorization: token || `Bearer ${JoblyApi.token}` };
         const params = method === "get" ? data : {};
 
         try {
@@ -73,15 +75,27 @@ class JoblyApi {
         return res;
     }
 
-    static async logIn(formData) {
-        let res = await this.request(`auth/token`, formData, "post");
-        JoblyApi.token = res.token;
+    static async getUser(username, token) {
+        console.log(`inside getUser@api function: ${token}`);
+        let res = await this.request(`users/${username}`, {}, "get", token);
         return res;
     }
 
-    static async getUser(username) {
-        let res = await this.request(`users/${username}`);
-        return res;
+    static async logIn(formData) {
+        let loginRes = await this.request(`auth/token`, formData, "post");
+        JoblyApi.token = loginRes.token;
+        console.log(`inside logIn @ api function: ${JoblyApi.token}`);
+        return loginRes;
+    }
+
+    static async apply(username, jobId, token) {
+        let applicationRes = await this.request(
+            `users/${username}/jobs/${jobId}`,
+            {},
+            "post",
+            token
+        );
+        return applicationRes;
     }
 }
 

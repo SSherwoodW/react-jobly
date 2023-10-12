@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
-import { BrowserRouter, redirect } from "react-router-dom";
-import { Nav } from 'reactstrap';
+import { BrowserRouter, useNavigate } from "react-router-dom";
 import NavBar from './NavBar';
 import RoutesList from './Routes';
 import UserContext from './userContext';
 import './App.css'
 import JoblyApi from '../../api';
+import useLocalStorage from "./hooks/useLocalStorage";
+
 
 // Here’s the strategy we took from our solution:
 
@@ -23,57 +24,78 @@ import JoblyApi from '../../api';
 
 
 function App() {
-  const [username, setUsername] = useState(null)
-  const [currentUser, setCurrentUser] = useState([]);
-  const [token, setToken] = useState(null);
+  const [username, setUsername] = useLocalStorage("username", null)
+  const [currentUser, setCurrentUser] = useLocalStorage("currentUser", null);
+  const [token, setToken] = useLocalStorage("token", null);
+  const [applicationIds, setApplicationIds] = useState(new Set([]));
+
+  // const navigate = useNavigate()
+  
 
   async function signUp(formData) {
-    const signUpResponse = await JoblyApi.signUp(formData)
     setUsername(formData.username)
-    setToken(signUpResponse)
+    const signUpResponse = await JoblyApi.signUp(formData)
+    setToken(signUpResponse.token)
     logIn({username: formData.username, password: formData.password})
   }
 
   async function logIn(formData) {
-    const logInResponse = await JoblyApi.logIn(formData)
     setUsername(formData.username)
-    setToken(logInResponse)
+    try {
+      const logInResponse = await JoblyApi.logIn(formData)
+      console.log(`Username: ${username}`)
+      setToken(logInResponse.token)
+      console.log(`should be token: ${logInResponse.token}`)
+    } catch (err) {
+      return err;
+    }
+    
   }
 
   function logOut() {
+    setApplicationIds(new Set([]));
     setUsername(null)
-    setCurrentUser([])
+    setCurrentUser(null)
     setToken(null)
   }
 
   useEffect(() => {
-    try {
       async function getUser() {
-        try {
-          const userResponse = await JoblyApi.getUser(username)
+          const userResponse = await JoblyApi.getUser(username, token)
           setCurrentUser(userResponse)
-          console.log(currentUser)
-        } catch (err) {
-          throw new Error(err)
-        }
+          setApplicationIds(new Set(currentUser.user.applications))
       };
       getUser();
-    } catch (err) {
-      throw new Error(err)
-    }
   }, [token])
+
+  /** Checks if a job has been applied for. */
+  function hasAppliedToJob(id) {
+    return applicationIds.has(id);
+  }
+
+  async function applyToJob(username, jobId, token) {
+        try {
+          const applyResponse = await JoblyApi.apply(username, jobId, token)
+          setApplicationIds(new Set([...applicationIds, jobId]))
+            console.log(applyResponse)
+        } catch (err) {
+            return err;
+        }
+    }
+
+  
 
   return (
     <>
+      <UserContext.Provider value={{ currentUser, token, hasAppliedToJob, applyToJob }}>
       <BrowserRouter>
-        <UserContext.Provider value={currentUser}>
           <NavBar signUp={signUp} logIn={logIn} logOut={logOut} />
-          <RoutesList signUp={signUp} logIn={logIn} logOut={logOut} />
-        </UserContext.Provider>
+          <RoutesList signUp={signUp} logIn={logIn} logOut={logOut} applyToJob={applyToJob}/>
         <footer>image: <a href="https://www.freepik.com/free-vector/abstract-blue-red-paper-cut-background-with-simple-shapes_17303414.htm#query=geometric%20background&position=23&from_view=keyword&track=ais">Image by masadepan</a> on Freepik</footer>
-      </BrowserRouter>
+        </BrowserRouter>
+        </UserContext.Provider>
     </>
   )
 }
 
-export default App
+export default App;

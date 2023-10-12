@@ -1,8 +1,14 @@
 .company-card {
     display: block;
     background-color: rgb(229, 231, 232);
+    color: black;
+    text-decoration: none;
     padding: 10px;
     margin: 10px;
     border-radius: 5px;
     box-shadow: 0,0,1,2;
+}
+
+.company-card:hover {
+    color: gray;
 }

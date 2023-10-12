@@ -6,7 +6,7 @@ function CompanyCard({ company }) {
     return (
         <Link to={`/companies/${company.handle}`}>
         <div className="company-card">
-            <div>{company.name}</div>
+            <div className="company-name"><b>{company.name}</b></div>
             <p>{company.description}</p>
         </div>
         </Link>

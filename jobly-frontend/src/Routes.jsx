@@ -7,14 +7,14 @@ import Signup from "./Signup";
 import Profile from "./Profile";
 import CompanyDetail from "./CompanyDetail";
 
-function RoutesList({signUp, logIn, logOut}) {
+function RoutesList({signUp, logIn, logOut, applyToJob}) {
     return (
       
         <Routes>
             <Route exact path="/" element={<Home logOut={logOut} />}></Route>
             <Route exact path="/companies" element={<CompanyList />}></Route>
             <Route exact path="/companies/:handle" element={<CompanyDetail />}></Route>
-            <Route exact path="/jobs" element={<JobsList />}></Route>
+            <Route exact path="/jobs" element={<JobsList applyToJob={applyToJob} />}></Route>
             <Route exact path="/jobs/:name" element={<JobsList />}></Route>
             <Route exact path="/login" element={<Login logIn={logIn} />}></Route>
             <Route exact path="/signup" element={<Signup signUp={signUp} />}></Route>

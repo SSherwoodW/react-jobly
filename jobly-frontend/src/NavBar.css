@@ -1,13 +1,41 @@
-.navbar {
+.Navigation {
+    background-color: #fff;
+    background-position:100%;
+    border-bottom: 2px solid rgba(0, 0, 0, .5);
+    /* align-items: center; */
+    flex-wrap: nowrap;
+        justify-content: flex-start;
+}
+
+.container-fluid {
+    align-items: center;
+        display: flex;
+        flex-wrap: inherit;
+        justify-content: space-between;
+}
+
+
+
+.navbar-links {
     background-color: white;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.125);
     text-decoration: none;
     list-style-type: none;
     display: flex;
-    border-radius: 3px;
-    border-width: 2px;
-    border-color: brown;
+    justify-content: right;
+    align-items: center;
+    margin-bottom: 0;
 }
+
+.link-home {
+        /* box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2); */
+        color: black;
+        text-decoration: inherit;
+        margin: 5px;
+        padding: 10px;
+        overflow: hidden;
+        float: left;
+        font-size: larger;
+    }
 
 .link {
     /* box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2); */
@@ -32,8 +60,9 @@
     text-decoration: none;
 }
 
-.link-home a {
+.link-home:hover {
     float: left;
+    color: gray;
     
 }
 

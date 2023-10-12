@@ -23,7 +23,7 @@ function CompanyDetail() {
     return (
         <div>
             {company ? (
-                <div>
+                <div className="company-jobs">
                     <h3 id="company-name">{company.name}</h3>
                     <h5 id="company-desc">{company.description}</h5>
                     <div>
